@@ -1,0 +1,7 @@
+.messageText {
+  display: block;
+  margin-top: 15px;
+  color: rgb(222, 10, 10);
+  font-size: 20px;
+  font-weight: 600;
+}
