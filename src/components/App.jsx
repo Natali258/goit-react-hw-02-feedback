@@ -11,29 +11,10 @@ export class App extends React.Component {
     bad: 0,
   };
 
-  handleChangeClick = event => {
-    console.log(event);
-    const { name } = event.target;
-    if (name === 'good') {
-      this.setState(
-        prev => ({
-          good: prev.good + 1,
-        }),
-        () => console.log(this.state.good)
-      );
-    }
-    if (name === 'neutral') {
-      this.setState(
-        prev => ({ neutral: prev.neutral + 1 }),
-        () => console.log(this.state.neutral)
-      );
-    }
-    if (name === 'bad') {
-      this.setState(
-        prev => ({ bad: prev.bad + 1 }),
-        () => console.log(this.state.bad)
-      );
-    }
+  handleChangeClick = state => {
+    this.setState(prev => ({
+      [state]: prev[state] + 1,
+    }));
   };
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
@@ -48,16 +29,13 @@ export class App extends React.Component {
 
   render() {
     const { good, neutral, bad } = this.state;
-    const options = Object.keys(this.state);
+    const obj = Object.keys(this.state);
     const totalFeedback = this.countTotalFeedback();
     const totalPercentage = this.countPositiveFeedbackPercentage();
     return (
       <div>
         <Section title="Please leave feedback">
-          <Feedback
-            options={options}
-            onLeaveFeedback={this.handleChangeClick}
-          />
+          <Feedback options={obj} onLeaveFeedback={this.handleChangeClick} />
         </Section>
         <Section title="Statistics">
           {totalFeedback ? (

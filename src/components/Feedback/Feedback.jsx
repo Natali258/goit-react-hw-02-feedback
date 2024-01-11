@@ -1,7 +1,6 @@
 import s from './Feedback.module.css';
 
 export const Feedback = ({ options, onLeaveFeedback }) => {
-  console.log(options);
   return (
     <div className={s.leaveFeedback}>
       <ul className={s.feedbackList}>
@@ -11,7 +10,7 @@ export const Feedback = ({ options, onLeaveFeedback }) => {
               name={option}
               type="button"
               className={s.feedbackBtn}
-              onClick={onLeaveFeedback}
+              onClick={() => onLeaveFeedback(option)}
             >
               {option}
             </button>
